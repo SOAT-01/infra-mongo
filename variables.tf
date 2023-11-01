@@ -39,7 +39,7 @@ variable "ip_address_cidr" {
   default = "0.0.0.0/0"
 }
 
-variable database_name {
+variable "database_name" {
     description = "Database Name"
     sensitive = true
 }
