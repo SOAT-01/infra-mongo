@@ -39,7 +39,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.DYNAMO }}"
+        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.TF_DYNAMO }}"
       
       - name: Terraform Validate
         id: validate
@@ -127,7 +127,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.DYNAMO }}"
+        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.TF_DYNAMO }}"
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve -input=false
