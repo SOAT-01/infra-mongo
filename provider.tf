@@ -8,11 +8,8 @@ terraform {
   required_version = ">= 0.13"
   
   backend "s3" {
-    bucket = "tf-state-bucket-4567"
     key    = "atlas/main.tf"
-    region = "us-east-1"
     profile = "default"
     encrypt = true
-    dynamodb_table = "terraform-state-lock"
   }
 }

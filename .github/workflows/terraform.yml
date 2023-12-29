@@ -39,7 +39,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.DYNAMO }}"
       
       - name: Terraform Validate
         id: validate
@@ -54,9 +54,10 @@ jobs:
           MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
           MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
           TF_VAR_atlas_org_id: ${{ secrets.TF_VAR_ATLAS_ORG_ID }}
-          TF_VAR_database_name: ${{ secrets.TF_VAR_DATABASE_NAME }}
-          TF_VAR_db_user: ${{ secrets.TF_VAR_DB_USER }}
-          TF_VAR_db_password: ${{ secrets.TF_VAR_DB_PASSWORD }}
+          TF_VAR_pedido_db_user: ${{ secrets.TF_VAR_PEDIDO_DB_USER }}
+          TF_VAR_pedido_db_password: ${{ secrets.TF_VAR_PEDIDO_DB_PASSWORD }}
+          TF_VAR_pagamento_db_user: ${{ secrets.TF_VAR_PAGAMENTO_DB_USER }}
+          TF_VAR_pagamento_db_password: ${{ secrets.TF_VAR_PAGAMENTO_DB_PASSWORD }}
 
       - name: Update Pull Request
         uses: actions/github-script@v6
@@ -99,9 +100,10 @@ jobs:
           MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
           MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
           TF_VAR_atlas_org_id: ${{ secrets.TF_VAR_ATLAS_ORG_ID }}
-          TF_VAR_database_name: ${{ secrets.TF_VAR_DATABASE_NAME }}
-          TF_VAR_db_user: ${{ secrets.TF_VAR_DB_USER }}
-          TF_VAR_db_password: ${{ secrets.TF_VAR_DB_PASSWORD }}
+          TF_VAR_pedido_db_user: ${{ secrets.TF_VAR_PEDIDO_DB_USER }}
+          TF_VAR_pedido_db_password: ${{ secrets.TF_VAR_PEDIDO_DB_PASSWORD }}
+          TF_VAR_pagamento_db_user: ${{ secrets.TF_VAR_PAGAMENTO_DB_USER }}
+          TF_VAR_pagamento_db_password: ${{ secrets.TF_VAR_PAGAMENTO_DB_PASSWORD }}
   
   terraform_destroy:
     name: "Terraform Destroy"
@@ -125,7 +127,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init -backend-config="bucket=${{ secrets.TF_BUCKET }}" -backend-config="region=${{ secrets.AWS_REGION }}" -backend-config="dynamodb_table=${{ secrets.DYNAMO }}"
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve -input=false
@@ -133,6 +135,7 @@ jobs:
           MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
           MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
           TF_VAR_atlas_org_id: ${{ secrets.TF_VAR_ATLAS_ORG_ID }}
-          TF_VAR_database_name: ${{ secrets.TF_VAR_DATABASE_NAME }}
-          TF_VAR_db_user: ${{ secrets.TF_VAR_DB_USER }}
-          TF_VAR_db_password: ${{ secrets.TF_VAR_DB_PASSWORD }}
+          TF_VAR_pedido_db_user: ${{ secrets.TF_VAR_PEDIDO_DB_USER }}
+          TF_VAR_pedido_db_password: ${{ secrets.TF_VAR_PEDIDO_DB_PASSWORD }}
+          TF_VAR_pagamento_db_user: ${{ secrets.TF_VAR_PAGAMENTO_DB_USER }}
+          TF_VAR_pagamento_db_password: ${{ secrets.TF_VAR_PAGAMENTO_DB_PASSWORD }}
