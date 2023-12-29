@@ -5,14 +5,25 @@ resource "mongodbatlas_project" "atlas-project" {
 }
 
 # Create a Database User
-resource "mongodbatlas_database_user" "db-user" {
-  username = var.db_user
-  password = var.db_password
+resource "mongodbatlas_database_user" "pedido_db_user" {
+  username = var.pedido_db_user
+  password = var.pedido_db_password
   project_id = mongodbatlas_project.atlas-project.id
   auth_database_name = "admin"
   roles {
     role_name     = "readWrite"
-    database_name = var.database_name
+    database_name = var.pedido_db
+  }
+}
+
+resource "mongodbatlas_database_user" "pagamento_db_user" {
+  username = var.pagamento_db_user
+  password = var.pagamento_db_password
+  project_id = mongodbatlas_project.atlas-project.id
+  auth_database_name = "admin"
+  roles {
+    role_name     = "readWrite"
+    database_name = var.pagamento_db
   }
 }
 

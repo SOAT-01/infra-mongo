@@ -39,17 +39,34 @@ variable "ip_address_cidr" {
   default = "0.0.0.0/0"
 }
 
-variable "database_name" {
-    description = "Database Name"
+variable "pedido_db" {
+    description = "Pedido Database Name"
+    default = "pedidos"
     sensitive = true
 }
 
-variable "db_user" {
-  description = "Database user"
+variable "pedido_db_user" {
+  description = "Pedido Database user"
   sensitive   = true
 }
 
-variable "db_password" {
-  description = "Database user password"
+variable "pedido_db_password" {
+  description = "Pedido user password"
+  sensitive   = true
+}
+
+variable "pagamento_db" {
+    description = "Pagamento Database Name"
+    default = "pagamentos"
+    sensitive = true
+}
+
+variable "pagamento_db_user" {
+  description = "Pagamento Database user"
+  sensitive   = true
+}
+
+variable "pagamento_db_password" {
+  description = "Pagamento user password"
   sensitive   = true
 }
